@@ -176,6 +176,7 @@ function DropdownMenu( {
 										}
 									) }
 									icon={ control.icon }
+									label={ control.label }
 									aria-checked={
 										control.role === 'menuitemcheckbox' ||
 										control.role === 'menuitemradio'
