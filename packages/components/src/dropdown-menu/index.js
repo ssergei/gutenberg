@@ -142,7 +142,7 @@ function DropdownMenu( {
 					{
 						'aria-label': menuLabel || label,
 						className: classnames(
-							'components-dropdown-menu__menu',
+							'components-dropdown-menu__menu no-text',
 							{ 'no-icons': noIcons }
 						),
 					},
@@ -173,6 +173,7 @@ function DropdownMenu( {
 												indexOfSet > 0 &&
 												indexOfControl === 0,
 											'is-active': control.isActive,
+											'no-title': ! control.title,
 										}
 									) }
 									icon={ control.icon }
