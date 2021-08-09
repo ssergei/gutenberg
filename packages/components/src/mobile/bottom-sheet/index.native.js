@@ -260,6 +260,7 @@ class BottomSheet extends Component {
 
 	onSetMaxHeight() {
 		const { height, width } = Dimensions.get( 'window' );
+		//const { safeAreaBottomInset } = this.state;
 		const statusBarHeight =
 			Platform.OS === 'android' ? StatusBar.currentHeight : 0;
 
@@ -277,13 +278,9 @@ class BottomSheet extends Component {
 			} );
 			//	On vertical mode `maxHeight` has to be set on 50% of width
 		} else {
-			this.setState( { maxHeight: height } );
-			/*maxHeight: Math.min(
-					height, //- safeAreaBottomInset,
-					maxHeightWithOpenKeyboard
-				),
+			this.setState( {
+				maxHeight: height - 75,
 			} );
-			*/
 		}
 	}
 
