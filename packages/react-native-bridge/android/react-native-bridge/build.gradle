@@ -31,7 +31,7 @@ apply from: 'https://gist.githubusercontent.com/hypest/ceaf20a8e7d9b8404e4a5ff2e
 
 group='org.wordpress-mobile.gutenberg-mobile'
 
-def buildAssetsFolder = 'build/assets'
+def buildAssetsFolder = 'build/assets/**'
 
 android {
     compileSdkVersion 29
