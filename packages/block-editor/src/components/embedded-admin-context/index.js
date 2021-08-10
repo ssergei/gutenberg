@@ -12,12 +12,11 @@ function EmbeddedAdminContext( props, forwardedRef ) {
 	const [ hasFocus, setHasFocus ] = useState();
 	const ref = useRefEffect( ( element ) => {
 		const root = element.attachShadow( { mode: 'open' } );
+		const style = document.createElement( 'style' );
 		Array.from( document.styleSheets ).forEach( ( styleSheet ) => {
 			if ( styleSheet.ownerNode.getAttribute( 'data-emotion' ) ) {
 				return;
 			}
-
-			let child = document.createElement( 'style' );
 
 			// Try to avoid requests for stylesheets of which we already
 			// know the CSS rules.
@@ -28,13 +27,12 @@ function EmbeddedAdminContext( props, forwardedRef ) {
 					cssText += cssRule.cssText;
 				}
 
-				child.textContent = cssText;
+				style.textContent = cssText;
 			} catch ( e ) {
-				child = styleSheet.ownerNode.cloneNode( true );
+				root.appendChild( styleSheet.ownerNode.cloneNode( true ) );
 			}
-
-			root.appendChild( child );
 		} );
+		root.appendChild( style );
 		setShadow( root );
 
 		function onFocusIn() {
