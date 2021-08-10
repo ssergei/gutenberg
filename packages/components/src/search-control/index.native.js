@@ -67,7 +67,7 @@ function SearchControl( {
 	onChange,
 	placeholder = __( 'Search blocks' ),
 } ) {
-	const [ isActive, setIsActive ] = useState( false );
+	const [ isActive, setIsActive ] = useState( true );
 	const [ currentStyles, setCurrentStyles ] = useState( baseStyles );
 
 	const isDark = useColorScheme() === 'dark';
@@ -228,6 +228,9 @@ function SearchControl( {
 			<View style={ innerContainerStyle }>
 				<View style={ inputContainerStyle }>
 					{ renderLeftButton() }
+					{
+						// eslint-disable-line jsx-a11y/no-autofocus
+					 }
 					<TextInput
 						ref={ inputRef }
 						style={ formInputStyle }
@@ -236,6 +239,7 @@ function SearchControl( {
 						onFocus={ () => setIsActive( true ) }
 						value={ value }
 						placeholder={ placeholder }
+						autoFocus={ true }
 					/>
 					{ renderRightButton() }
 				</View>
