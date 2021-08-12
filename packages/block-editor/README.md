@@ -511,7 +511,6 @@ context in the block editor's writing flow.
 _Parameters_
 
 -   _props_ `Object`:
--   _props.wrapperProps_ `Object`:
 
 _Returns_
 

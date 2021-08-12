@@ -1,13 +1,13 @@
 /**
  * WordPress dependencies
  */
-import { useMergeRefs, useRefEffect } from '@wordpress/compose';
-import { useState, createPortal, forwardRef } from '@wordpress/element';
+import { useRefEffect } from '@wordpress/compose';
+import { useState, createPortal } from '@wordpress/element';
 import { ENTER, SPACE, ESCAPE } from '@wordpress/keycodes';
 import { focus } from '@wordpress/dom';
 import { __experimentalStyleProvider as StyleProvider } from '@wordpress/components';
 
-function EmbeddedAdminContext( props, forwardedRef ) {
+export default function EmbeddedAdminContext( props ) {
 	const [ shadow, setShadow ] = useState();
 	const [ hasFocus, setHasFocus ] = useState();
 	const ref = useRefEffect( ( element ) => {
@@ -27,7 +27,7 @@ function EmbeddedAdminContext( props, forwardedRef ) {
 					cssText += cssRule.cssText;
 				}
 
-				style.textContent = cssText;
+				style.textContent += cssText;
 			} catch ( e ) {
 				root.appendChild( styleSheet.ownerNode.cloneNode( true ) );
 			}
@@ -53,7 +53,7 @@ function EmbeddedAdminContext( props, forwardedRef ) {
 	return (
 		<div
 			{ ...props }
-			ref={ useMergeRefs( [ ref, forwardedRef ] ) }
+			ref={ ref }
 			tabIndex={ 0 }
 			role="button"
 			aria-pressed={ hasFocus }
@@ -78,5 +78,3 @@ function EmbeddedAdminContext( props, forwardedRef ) {
 		</div>
 	);
 }
-
-export default forwardRef( EmbeddedAdminContext );

@@ -14,13 +14,12 @@ import EmbeddedAdminContext from '../embedded-admin-context';
  * context in the block editor's writing flow.
  *
  * @param {Object} props
- * @param {Object} props.wrapperProps
  *
  * @return {WPComponent} The component
  */
-export default function IsolatedPlaceholder( { wrapperProps, ...props } ) {
+export default function IsolatedPlaceholder( props ) {
 	return (
-		<EmbeddedAdminContext { ...wrapperProps }>
+		<EmbeddedAdminContext aria-label={ props.label }>
 			<Placeholder
 				{ ...props }
 				role="dialog"

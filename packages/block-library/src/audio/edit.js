@@ -115,17 +115,18 @@ function AudioEdit( {
 	}
 	if ( ! src ) {
 		return (
-			<MediaPlaceholder
-				icon={ <BlockIcon icon={ icon } /> }
-				onSelect={ onSelectAudio }
-				onSelectURL={ onSelectURL }
-				accept="audio/*"
-				allowedTypes={ ALLOWED_MEDIA_TYPES }
-				value={ attributes }
-				notices={ noticeUI }
-				onError={ onUploadError }
-				wrapperProps={ blockProps }
-			/>
+			<div { ...blockProps }>
+				<MediaPlaceholder
+					icon={ <BlockIcon icon={ icon } /> }
+					onSelect={ onSelectAudio }
+					onSelectURL={ onSelectURL }
+					accept="audio/*"
+					allowedTypes={ ALLOWED_MEDIA_TYPES }
+					value={ attributes }
+					notices={ noticeUI }
+					onError={ onUploadError }
+				/>
+			</div>
 		);
 	}
 

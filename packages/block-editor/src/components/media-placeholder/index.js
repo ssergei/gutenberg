@@ -75,7 +75,6 @@ export function MediaPlaceholder( {
 	onFilesPreUpload = noop,
 	onHTMLDrop = noop,
 	children,
-	wrapperProps,
 } ) {
 	const mediaUpload = useSelect( ( select ) => {
 		const { getSettings } = select( blockEditorStore );
@@ -244,7 +243,6 @@ export function MediaPlaceholder( {
 				onClick={ onClick }
 				onDoubleClick={ onDoubleClick }
 				preview={ mediaPreview }
-				wrapperProps={ wrapperProps }
 			>
 				{ content }
 				{ children }

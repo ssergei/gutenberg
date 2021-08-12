@@ -190,20 +190,21 @@ function FileEdit( {
 
 	if ( ! href || hasError ) {
 		return (
-			<MediaPlaceholder
-				icon={ <BlockIcon icon={ icon } /> }
-				labels={ {
-					title: __( 'File' ),
-					instructions: __(
-						'Upload a file or pick one from your media library.'
-					),
-				} }
-				onSelect={ onSelectFile }
-				notices={ noticeUI }
-				onError={ onUploadError }
-				accept="*"
-				wrapperProps={ blockProps }
-			/>
+			<div { ...blockProps }>
+				<MediaPlaceholder
+					icon={ <BlockIcon icon={ icon } /> }
+					labels={ {
+						title: __( 'File' ),
+						instructions: __(
+							'Upload a file or pick one from your media library.'
+						),
+					} }
+					onSelect={ onSelectFile }
+					notices={ noticeUI }
+					onError={ onUploadError }
+					accept="*"
+				/>
+			</div>
 		);
 	}
 
