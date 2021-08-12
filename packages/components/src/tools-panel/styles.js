@@ -17,6 +17,10 @@ export const ToolsPanel = css`
 	margin-top: -1px;
 	padding: ${ space( 4 ) };
 	row-gap: ${ space( 6 ) };
+
+	> div {
+		grid-column: span 2;
+	}
 `;
 
 export const ToolsPanelHeader = css`
@@ -27,6 +31,10 @@ export const ToolsPanelHeader = css`
 	grid-column: span 2;
 	justify-content: space-between;
 	line-height: normal;
+
+	> span {
+		display: inline-flex;
+	}
 
 	.components-tools-panel & {
 		margin: 0;
@@ -60,5 +68,18 @@ export const ToolsPanelItem = css`
 		padding-bottom: 0;
 		margin-bottom: 0;
 		max-width: 100%;
+	}
+
+	.block-editor-color-gradient-control {
+		margin-bottom: 0;
+
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
+
+	.block-editor-color-gradient-control__color-indicator span {
+		display: inline-flex;
+		align-items: center;
 	}
 `;
