@@ -61,4 +61,9 @@ export const ToolsPanelItem = css`
 		margin-bottom: 0;
 		max-width: 100%;
 	}
+
+	> .components-base-control,
+	.components-base-control__field {
+		margin-bottom: 0;
+	}
 `;
