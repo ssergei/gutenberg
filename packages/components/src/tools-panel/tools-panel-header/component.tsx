@@ -39,10 +39,7 @@ const ToolsPanelHeader = (
 				<DropdownMenu icon={ moreHorizontal } label={ menuLabel }>
 					{ ( { onClose } ) => (
 						<>
-							<MenuGroup
-								label={ __( 'Display options' ) }
-								hideSeparator={ false }
-							>
+							<MenuGroup label={ __( 'Display options' ) }>
 								{ Object.entries( menuItems ).map(
 									( [ label, isSelected ] ) => {
 										return (
