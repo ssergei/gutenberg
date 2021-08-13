@@ -22,6 +22,7 @@ import {
 	withNotices,
 	__experimentalUseCustomUnits as useCustomUnits,
 	__experimentalBoxControl as BoxControl,
+	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
 import { compose, withInstanceId, useInstanceId } from '@wordpress/compose';
 import {
@@ -512,20 +513,6 @@ function CoverEdit( {
 						</PanelRow>
 					</PanelBody>
 				) }
-				<PanelBody title={ __( 'Dimensions' ) }>
-					<CoverHeightInput
-						value={ temporaryMinHeight || minHeight }
-						unit={ minHeightUnit }
-						onChange={ ( newMinHeight ) =>
-							setAttributes( { minHeight: newMinHeight } )
-						}
-						onUnitChange={ ( nextUnit ) =>
-							setAttributes( {
-								minHeightUnit: nextUnit,
-							} )
-						}
-					/>
-				</PanelBody>
 				<PanelColorGradientSettings
 					title={ __( 'Overlay' ) }
 					initialOpen={ true }
@@ -555,6 +542,30 @@ function CoverEdit( {
 						/>
 					) }
 				</PanelColorGradientSettings>
+			</InspectorControls>
+			<InspectorControls group="dimensions">
+				<ToolsPanelItem
+					hasValue={ () => !! minHeight }
+					label={ __( 'Minimum height' ) }
+					onDeselect={ () =>
+						setAttributes( { minHeight: undefined } )
+					}
+					resetAllFilter={ () => ( { minHeight: undefined } ) }
+					isShownByDefault={ true }
+				>
+					<CoverHeightInput
+						value={ temporaryMinHeight || minHeight }
+						unit={ minHeightUnit }
+						onChange={ ( newMinHeight ) =>
+							setAttributes( { minHeight: newMinHeight } )
+						}
+						onUnitChange={ ( nextUnit ) =>
+							setAttributes( {
+								minHeightUnit: nextUnit,
+							} )
+						}
+					/>
+				</ToolsPanelItem>
 			</InspectorControls>
 		</>
 	);
