@@ -156,7 +156,7 @@ export function useInnerBlocksProps( props = {}, options = {} ) {
 					blocksStore
 				).hasBlockSupport(
 					blockName,
-					'__experimentalCaptureToolbars',
+					'__experimentalExposeControlsToChildren',
 					false
 				),
 				hasOverlay:
