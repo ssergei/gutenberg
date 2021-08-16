@@ -1409,7 +1409,7 @@ export function canRemoveBlock( state, clientId, rootClientId = null ) {
 	const { lock } = attributes;
 	const parentIsLocked = !! getTemplateLock( state, rootClientId );
 	// If we don't have a lock on the blockType level, we differ to the parent templateLock.
-	if ( lock === undefined || lock?.remove === undefined ) {
+	if ( lock.remove === undefined ) {
 		return ! parentIsLocked;
 	}
 
@@ -1450,7 +1450,7 @@ export function canMoveBlock( state, clientId, rootClientId = null ) {
 	const { lock } = attributes;
 	const parentIsLocked = getTemplateLock( state, rootClientId ) === 'all';
 	// If we don't have a lock on the blockType level, we differ to the parent templateLock.
-	if ( lock === undefined || lock?.move === undefined ) {
+	if ( lock.move === undefined ) {
 		return ! parentIsLocked;
 	}
 
