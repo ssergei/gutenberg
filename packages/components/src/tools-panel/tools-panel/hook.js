@@ -23,17 +23,17 @@ export function useToolsPanel( props ) {
 
 	// Allow panel items to register themselves.
 	const [ panelItems, setPanelItems ] = useState( [] );
-	const [ panelResetAllFilters, setPanelResetAllFilters ] = useState( [] );
 
 	const registerPanelItem = ( item ) => {
 		setPanelItems( ( items ) => [ ...items, item ] );
+	};
 
-		if ( item.resetAllFilter ) {
-			setPanelResetAllFilters( ( filters ) => [
-				...filters,
-				item.resetAllFilter,
-			] );
-		}
+	// Panels need to deregister on unmount to avoid orphans in menu state.
+	// This is an issue when panel items are being injected via SlotFills.
+	const deregisterPanelItem = ( label ) => {
+		setPanelItems( ( items ) =>
+			items.filter( ( item ) => item.label !== label )
+		);
 	};
 
 	// Manage and share display state of menu items representing child controls.
@@ -59,10 +59,22 @@ export function useToolsPanel( props ) {
 		} );
 	};
 
+	const getResetAllFilters = () => {
+		const filters = [];
+
+		panelItems.forEach( ( item ) => {
+			if ( item.resetAllFilter ) {
+				filters.push( item.resetAllFilter );
+			}
+		} );
+
+		return filters;
+	};
+
 	// Resets display of children and executes resetAll callback if available.
 	const resetAllItems = () => {
 		if ( typeof resetAll === 'function' ) {
-			resetAll( panelResetAllFilters );
+			resetAll( getResetAllFilters() );
 		}
 
 		// Turn off display of all non-default items.
@@ -75,7 +87,7 @@ export function useToolsPanel( props ) {
 		setMenuItems( resetMenuItems );
 	};
 
-	const panelContext = { menuItems, registerPanelItem };
+	const panelContext = { menuItems, registerPanelItem, deregisterPanelItem };
 
 	return {
 		...otherProps,
