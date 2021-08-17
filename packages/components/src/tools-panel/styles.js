@@ -17,6 +17,10 @@ export const ToolsPanel = css`
 	margin-top: -1px;
 	padding: ${ space( 4 ) };
 	row-gap: ${ space( 6 ) };
+
+	> div {
+		grid-column: span 2;
+	}
 `;
 
 export const ToolsPanelHeader = css`
@@ -60,5 +64,13 @@ export const ToolsPanelItem = css`
 		padding-bottom: 0;
 		margin-bottom: 0;
 		max-width: 100%;
+	}
+
+	.components-base-control.block-editor-color-gradient-control {
+		margin-bottom: 0;
+
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
 	}
 `;
